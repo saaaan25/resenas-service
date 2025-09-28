@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 
-namespace catalogo.Data;
+namespace reseñas.Data;
 
 public class AppDBContext : DbContext
 {
