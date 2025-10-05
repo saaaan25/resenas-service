@@ -1,6 +1,6 @@
 namespace reseñas.Models
 {
-    public class Resenas
+    public class Resena
     {
         public int Id { get; set; }
         public int Id_detalle_orden { get; set; }
