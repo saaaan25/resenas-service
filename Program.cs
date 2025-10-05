@@ -2,6 +2,8 @@ using reseñas.Data;
 using Microsoft.EntityFrameworkCore;
 using Scalar.AspNetCore;
 using DotNetEnv;
+using reseñas.Interfaces;
+using reseñas.Repository;
 Env.Load();
 
 var builder = WebApplication.CreateBuilder(args);
@@ -18,6 +20,8 @@ if (string.IsNullOrEmpty(connectionString))
 builder.Services.AddDbContext<AppDBContext>(options =>
     options.UseNpgsql(connectionString));
 
+builder.Services.AddScoped<IResenaRepository, ResenaRepository>();
+
 builder.Services.AddControllers()
     .AddNewtonsoftJson(options =>
         options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
@@ -32,5 +36,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.MapControllers();
 
 app.Run();
