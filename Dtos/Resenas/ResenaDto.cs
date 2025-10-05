@@ -1,6 +1,6 @@
 namespace reseñas.Dtos.Resenas
 {
-    public class ResenasDto
+    public class ResenaDto
     {
         public int Id { get; set; }
         public int Id_detalle_orden { get; set; }
