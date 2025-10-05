@@ -7,8 +7,8 @@ namespace reseñas.Interfaces
     {
         Task<List<Resena>> GetAllAsync();
         Task<Resena?> GetByIdAsync(int id);
-        Task<Resena> CreateAsync(Resena Resena);
-        Task<Resena?> UpdateAsync(int id, UpdateResenaRequestDto Resena);
+        Task<Resena> CreateAsync(Resena resena);
+        Task<Resena?> UpdateAsync(int id, UpdateResenaRequestDto resena);
         Task<Resena?> DeleteAsync(int id);
     }
 }
