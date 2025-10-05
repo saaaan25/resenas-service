@@ -22,7 +22,7 @@ namespace reseñas.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("reseñas.Models.Resenas", b =>
+            modelBuilder.Entity("reseñas.Models.Resena", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()

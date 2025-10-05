@@ -12,7 +12,7 @@ using reseñas.Data;
 namespace reseñas.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    [Migration("20251005021623_init")]
+    [Migration("20251005024828_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -25,7 +25,7 @@ namespace reseñas.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("reseñas.Models.Resenas", b =>
+            modelBuilder.Entity("reseñas.Models.Resena", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
