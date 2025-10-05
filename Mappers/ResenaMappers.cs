@@ -17,7 +17,7 @@ namespace reseñas.Mappers
             };
         }
 
-        public static Resena ToPromocionFromCreateDto(this CreateResenaRequestDto resenaDto)
+        public static Resena ToResenaFromCreateDto(this CreateResenaRequestDto resenaDto)
         {
             return new Resena
             {
