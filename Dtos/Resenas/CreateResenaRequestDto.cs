@@ -1,6 +1,6 @@
 namespace reseñas.Dtos.Resenas
 {
-    public class CreateResenasRequestDto
+    public class CreateResenaRequestDto
     {
         public int Id_detalle_orden { get; set; }
         public string Comentario { get; set; } = string.Empty;
