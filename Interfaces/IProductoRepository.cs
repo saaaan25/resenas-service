@@ -7,5 +7,8 @@ namespace reseñas.Interfaces
         Task<List<Producto>> GetAllAsync();
         Task<Producto?> GetByIdAsync(int id);
         Task<List<Resena>> GetResenasByProductoAsync(int productoId);
+        Task<Producto?> GetProductoByOrdenItemIdAsync(int ordenItemId);
+        Task<List<Producto>> GetProductosByUsuarioAsync(int usuarioId);
+        Task SyncProductosAsync(List<Producto> productos);
     }
 }

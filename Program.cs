@@ -4,6 +4,7 @@ using Scalar.AspNetCore;
 using DotNetEnv;
 using reseñas.Interfaces;
 using reseñas.Repository;
+using reseñas.Services;
 Env.Load();
 
 var builder = WebApplication.CreateBuilder(args);
@@ -20,7 +21,13 @@ if (string.IsNullOrEmpty(connectionString))
 builder.Services.AddDbContext<AppDBContext>(options =>
     options.UseNpgsql(connectionString));
 
+builder.Services.AddHttpClient<SyncService>();
+
 builder.Services.AddScoped<IResenaRepository, ResenaRepository>();
+builder.Services.AddScoped<IProductoRepository, ProductoRepository>();
+builder.Services.AddScoped<IOrdenRepository, OrdenRepository>();
+builder.Services.AddScoped<IOrdenItemRepository, OrdenItemRepository>();
+builder.Services.AddScoped<ISyncService, SyncService>();
 
 builder.Services.AddControllers()
     .AddNewtonsoftJson(options =>
