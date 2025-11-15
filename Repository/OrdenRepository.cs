@@ -13,7 +13,9 @@ namespace reseñas.Repository
             _context = context;
         }
 
-        public async Task<List<Orden>> GetAllAsync() => await _context.Ordenes.ToListAsync();
+        public async Task<List<Orden>> GetAllAsync() 
+            => await _context.Ordenes.Include(o => o.Items).ToListAsync();
+
 
         public async Task<List<Orden>> GetByUsuarioAsync(int usuarioId)
             => await _context.Ordenes.Where(o => o.UsuarioId == usuarioId)
@@ -26,6 +28,13 @@ namespace reseñas.Repository
             
             await _context.Ordenes.AddRangeAsync(ordenes);
             await _context.SaveChangesAsync();
+
+            var allItems = ordenes.SelectMany(o => o.Items).ToList();
+            if (allItems.Any())
+            {
+                await _context.OrdenItems.AddRangeAsync(allItems);
+                await _context.SaveChangesAsync();
+            }
         }
 
     }

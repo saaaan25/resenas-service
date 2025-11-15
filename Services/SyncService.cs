@@ -32,6 +32,7 @@ namespace reseñas.Services
             int page = 1;
 
             var all = new List<Orden>();
+            var allItems = new List<OrdenItem>();
 
             while (true)
             {
@@ -55,6 +56,13 @@ namespace reseñas.Services
                         Id = Guid.Parse(detail._id),
                         UsuarioId = detail.usuarioId
                     });
+
+                    allItems.AddRange(detail.items.Select(it => new OrdenItem
+                    {
+                        Id = it.id,
+                        OrdenId = Guid.Parse(detail._id),
+                        ProductoId = it.producto_id
+                    }));
                 }
 
                 if (page >= list.LastPage)
@@ -64,6 +72,7 @@ namespace reseñas.Services
             }
 
             await _ordenRepo.SyncOrdenesAsync(all);
+            await _ordenItemRepo.SyncOrdenItemsAsync(allItems);
         }
 
         public async Task SyncOrdenItems()
@@ -95,6 +104,7 @@ namespace reseñas.Services
                     {
                         items.Add(new OrdenItem
                         {
+                            Id = it.id,
                             OrdenId = Guid.Parse(detail._id),
                             ProductoId = it.producto_id
                         });
