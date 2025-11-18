@@ -56,3 +56,4 @@ nunit-*.xml
 **/secrets.json
 
 .env
+.vs/
