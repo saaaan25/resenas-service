@@ -10,7 +10,7 @@ namespace reseñas.Controllers
         public IActionResult Ping()
         {
             return Ok(new {
-                message = "CI/CD funcionando correctamente 🎉",
+                message = "CI/CD funcionando correctamente",
                 time = DateTime.UtcNow
             });
         }
