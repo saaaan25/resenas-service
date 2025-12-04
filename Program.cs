@@ -51,7 +51,7 @@ if (builder.Configuration.GetValue<bool>("EnableDocs"))
     app.MapScalarApiReference();
 }
 
-Console.WriteLine("EnableDocs=" + builder.Configuration["EnableDocs"]);
+Console.WriteLine("EnableDocs" + builder.Configuration["EnableDocs"]);
 
 app.UseHttpsRedirection();
 

@@ -46,6 +46,18 @@ namespace reseñas.Controllers
             return Ok(dto);
         }
 
+        [HttpGet("{id}/calificacion")]
+        public async Task<IActionResult> GetCalificacion(int id)
+        {
+            var promedio = await _productoRepository.GetCalificationByProductoAsync(id);
+
+            return Ok(new 
+            { 
+                productoId = id, 
+                calificacionPromedio = Math.Round(promedio, 2) 
+            });
+        }
+
         [HttpGet("orden-item/{ordenItemId}")]
         public async Task<IActionResult> GetProductoByOrdenItemId(int ordenItemId)
         {

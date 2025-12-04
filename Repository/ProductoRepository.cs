@@ -17,6 +17,20 @@ namespace reseñas.Repository
 
         public async Task<Producto?> GetByIdAsync(int id) => await _context.Productos.FindAsync(id);
 
+        public async Task<decimal> GetCalificationByProductoAsync(int productoId)
+        {
+            var query = _context.Resenas
+                .Where(r => r.Id_detalle_orden != 0)
+                .Where(r => _context.OrdenItems.Any(oi =>
+                    oi.Id == r.Id_detalle_orden &&
+                    oi.ProductoId == productoId));
+
+            if (!await query.AnyAsync())
+                return 0;
+
+            return await query.AverageAsync(r => r.Calificacion);
+        }
+
         public async Task<Producto?> GetProductoByOrdenItemIdAsync(int ordenItemId)
         {
             var ordenItem = await _context.OrdenItems
