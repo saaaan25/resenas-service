@@ -16,8 +16,24 @@ namespace reseñas.Repository
 
         public async Task<Resena> CreateAsync(Resena resena)
         {
+            var detalleOrden = await _context.OrdenItems
+                .FirstOrDefaultAsync(d => d.Id == resena.Id_detalle_orden);
+
+            if (detalleOrden == null)
+                throw new Exception("El detalle de la orden no existe.");
+
+            var orden = await _context.Ordenes
+                .FirstOrDefaultAsync(o => o.Id == detalleOrden.OrdenId);
+
+            if (orden == null)
+                throw new Exception("La orden asociada al detalle no existe.");
+
+            if (orden.UsuarioId != resena.Id_usuario)
+                throw new UnauthorizedAccessException("El usuario no coincide con el usuario de la orden.");
+
             await _context.Resenas.AddAsync(resena);
             await _context.SaveChangesAsync();
+
             return resena;
         }
 

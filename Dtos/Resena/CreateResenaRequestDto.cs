@@ -6,5 +6,7 @@ namespace reseñas.Dtos.Resenas
         public string Comentario { get; set; } = string.Empty;
         public decimal Calificacion { get; set; }
         public DateTimeOffset Fecha_resena { get; set; }
+        public int Id_usuario { get; set; }
+        public string Nombre_usuario { get; set; } = string.Empty;
     }
 }
